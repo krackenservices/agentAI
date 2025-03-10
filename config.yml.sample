@@ -8,6 +8,15 @@ models:
   - id: local
     name: mymodel
     endpoint: http://127.0.0.1:8080/
+    enabled: true
+    api_key: ""
+    headers:
+        Content-Type: application/json
+    additional_system_prompt: ""
+    additional_user_prompt: ""
+    additional_assistant_prompt: ""
+    parameters:
+        temperature: 0.6
     tools_supported: true
     tool_tag_start: "<tool>"
     tool_tag_end: "</tool>"
@@ -16,7 +25,10 @@ models:
 
 tools:
   - id: fstool
-    name: fstool
+    enabled: true
+- id: extTool
+    name: extTool
+    enabled: true
     description: A tool to list the local fs contents given a path
     command_key: fstool
     command_args: { "path": "." }

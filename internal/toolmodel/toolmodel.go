@@ -1,6 +1,7 @@
 package toolmodel
 
 // ToolConfig represents the configuration for a tool.
+// swagger:model ToolConfig
 type ToolConfig struct {
 	ID              string                 `yaml:"id"`
 	Name            string                 `yaml:"name"`

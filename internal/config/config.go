@@ -25,15 +25,23 @@ type ServerConfig struct {
 	Interface string `yaml:"interface,omitempty"`
 }
 
-// ModelConfig represents a model configuration.
+// ModelConfig defines the configuration for a model.
+// swagger:model ModelConfig
 type ModelConfig struct {
-	ID             string   `yaml:"id"`
-	Name           string   `yaml:"name"`
-	Endpoint       string   `yaml:"endpoint"`
-	ToolsSupported bool     `yaml:"tools_supported"`
-	ToolTagStart   string   `yaml:"tool_tag_start,omitempty"`
-	ToolTagEnd     string   `yaml:"tool_tag_end,omitempty"`
-	Tools          []string `yaml:"tools,omitempty"`
+	ID                        string                 `yaml:"id" example:"local"`
+	Name                      string                 `yaml:"name" example:"mymodel"`
+	Endpoint                  string                 `yaml:"endpoint" example:"http://127.0.0.1:8080/"`
+	Enabled                   bool                   `yaml:"enabled,omitempty" example:"true"`
+	APIKey                    string                 `yaml:"api_key,omitempty" example:""`
+	Headers                   map[string]string      `yaml:"headers,omitempty" example:"{'Content-Type':'application/json'}"`
+	AdditionalSystemPrompt    string                 `yaml:"additional_system_prompt,omitempty" example:""`
+	AdditionalUserPrompt      string                 `yaml:"additional_user_prompt,omitempty" example:""`
+	AdditionalAssistantPrompt string                 `yaml:"additional_assistant_prompt,omitempty" example:""`
+	Parameters                map[string]interface{} `yaml:"parameters,omitempty"`
+	ToolsSupported            bool                   `yaml:"tools_supported,omitempty" example:"true"`
+	ToolTagStart              string                 `yaml:"tool_tag_start,omitempty" example:"<tool>"`
+	ToolTagEnd                string                 `yaml:"tool_tag_end,omitempty" example:"</tool>"`
+	Tools                     []string               `yaml:"tools,omitempty" example:"[fstool]"`
 }
 
 // LoadConfig loads the configuration from the given YAML file path,
