@@ -26,7 +26,7 @@ models:
 tools:
   - id: fstool
     enabled: true
-- id: extTool
+  - id: extTool
     name: extTool
     enabled: true
     description: A tool to list the local fs contents given a path

@@ -18,7 +18,7 @@ api:
 	go build -o $(BINARY_API) ./cmd/api
 
 swagger:
-	swag init -d cmd/api,internal/handlers,internal/config,internal/routes,internal/server,internal/toolmodel,internal/toolregistry
+	swag init -d cmd/api,internal/handlers,internal/config,internal/routes,internal/server,internal/toolmodel,internal/toolregistry -o swdocs
 
 cli:
 	@echo "Building CLI tool..."
