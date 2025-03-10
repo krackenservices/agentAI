@@ -1,0 +1,24 @@
+version: 1.0
+server:
+  port:
+  env:
+  interface:
+
+models:
+  - id: local
+    name: mymodel
+    endpoint: http://127.0.0.1:8080/
+    tools_supported: true
+    tool_tag_start: "<tool>"
+    tool_tag_end: "</tool>"
+    tools:
+      - fstool
+
+tools:
+  - id: fstool
+    name: fstool
+    description: A tool to list the local fs contents given a path
+    command_key: fstool
+    command_args: { "path": "." }
+    example: { "tool": "fstool", "args": { "path": "." } }
+    example_response: { "output": "Listing contents of directory: .\nfile1\ndir1\ndir1/subdir1\n" }
