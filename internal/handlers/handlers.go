@@ -12,7 +12,7 @@ import (
 // @Accept json
 // @Produce json
 // @Success 200 {object} map[string]string
-// @Router /hello [get]
+// @Router /api/v1/hello [get]
 func HelloHandler(w http.ResponseWriter, r *http.Request) {
 	resp := map[string]string{"message": "Hello, world!"}
 	w.Header().Set("Content-Type", "application/json")

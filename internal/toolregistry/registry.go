@@ -10,6 +10,7 @@ var InternalTools = map[string]toolmodel.ToolConfig{
 		Description: "Internal tool to list files on the local filesystem",
 		CommandKey:  "fstool",
 		CommandArgs: map[string]interface{}{"path": "."},
+		Example:     map[string]interface{}{"tool": "fstool", "args": map[string]string{"path": "."}},
 	},
 	// Add other internal tools as needed.
 }

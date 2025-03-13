@@ -55,7 +55,7 @@ func maskModel(m config.ModelConfig) config.ModelConfig {
 // @Accept json
 // @Produce json
 // @Success 200 {array} config.ModelConfig
-// @Router /models [get]
+// @Router /api/v1/models [get]
 func ListModels(cfg *config.Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		maskedModels := make([]config.ModelConfig, len(cfg.Models))
@@ -78,7 +78,7 @@ func ListModels(cfg *config.Config) http.HandlerFunc {
 // @Success 200 {object} config.ModelConfig
 // @Failure 400 {object} map[string]string "Bad Request"
 // @Failure 404 {object} map[string]string "Not Found"
-// @Router /model/{modelID} [get]
+// @Router /api/v1/model/{modelID} [get]
 func GetModel(cfg *config.Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Expect URL: /model/<modelID>

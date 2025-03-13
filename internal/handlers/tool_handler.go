@@ -55,7 +55,7 @@ func buildCommandArgs(args map[string]interface{}) []string {
 // @Success 200 {object} map[string]string "Output of the tool"
 // @Failure 400 {object} map[string]string "Bad Request"
 // @Failure 500 {object} map[string]string "Internal Error"
-// @Router /tool/{tool_id} [post]
+// @Router /api/v1/tool/{tool_id} [post]
 func DynamicToolHandler(toolConfig toolmodel.ToolConfig) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
@@ -99,7 +99,7 @@ func DynamicToolHandler(toolConfig toolmodel.ToolConfig) http.HandlerFunc {
 // @Accept json
 // @Produce json
 // @Success 200 {array} interface{}
-// @Router /tools [get]
+// @Router /api/v1/tools [get]
 func ListTools(cfg *config.Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var toolsList []interface{}
@@ -136,7 +136,7 @@ func ListTools(cfg *config.Config) http.HandlerFunc {
 // @Accept json
 // @Produce json
 // @Success 200 {array} interface{}
-// @Router /tools/internal [get]
+// @Router /api/v1/tools/internal [get]
 func ListInternalTools(cfg *config.Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var toolsList []interface{}
@@ -162,7 +162,7 @@ func ListInternalTools(cfg *config.Config) http.HandlerFunc {
 // @Accept json
 // @Produce json
 // @Success 200 {array} interface{}
-// @Router /tools/external [get]
+// @Router /api/v1/tools/external [get]
 func ListExternalTools(cfg *config.Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var toolsList []interface{}

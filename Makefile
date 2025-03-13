@@ -13,6 +13,9 @@ all: build build-tools
 
 build: api cli
 
+debug-api: clean-api api
+	dlv --listen=:2345 --headless=true --api-version=2 --accept-multiclient exec $(BINARY_API)
+
 api:
 	@echo "Building API server..."
 	go build -o $(BINARY_API) ./cmd/api
