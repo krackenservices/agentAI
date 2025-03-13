@@ -58,7 +58,7 @@ func ChatHandler(cfg *config.Config) http.HandlerFunc {
 		toolContext := buildToolContext(*selectedModel)
 		//fmt.Printf("Tool Context: %s\n", toolContext)
 
-		llmResponse, err := callLLM(payload, toolContext)
+		llmResponse, err := callLLM(selectedModel, payload, toolContext)
 		if err != nil {
 			http.Error(w, fmt.Sprintf("Error calling LLM: %v", err), http.StatusInternalServerError)
 			return
@@ -80,7 +80,7 @@ func ChatHandler(cfg *config.Config) http.HandlerFunc {
 			// Step 7: Append the tool result to the conversation and send it back to the LLM.
 			// For demonstration, we simply append the tool result to the current message.
 			payload.Message = llmResponse + "\nTool result: " + toolResult
-			llmResponse, err = callLLM(payload, toolContext)
+			llmResponse, err = callLLM(selectedModel, payload, toolContext)
 			if err != nil {
 				http.Error(w, fmt.Sprintf("Error calling LLM after tool execution: %v", err), http.StatusInternalServerError)
 				return
@@ -93,11 +93,16 @@ func ChatHandler(cfg *config.Config) http.HandlerFunc {
 	}
 }
 
-func callLLM(payload ChatRequest, context string) (string, error) {
+func callLLM(model *config.ModelConfig, payload ChatRequest, context string) (string, error) {
 	message := context + "\n" + payload.Message
 
 	fmt.Println("Sending message:\n\n" + message)
-	//TODO: Make rest call to LLM
+
+	body, err := json.Marshal(message)
+	if err != nil {
+		return "", fmt.Errorf("failed to marshal payload: %w", err)
+	}
+	//model.Endpoint
 	var sb strings.Builder
 
 	if !strings.Contains(payload.Message, "<tool>") {
