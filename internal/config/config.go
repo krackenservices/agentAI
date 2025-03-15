@@ -33,6 +33,7 @@ type ModelConfig struct {
 	Endpoint                  string                 `yaml:"endpoint" example:"http://127.0.0.1:8080/"`
 	Enabled                   bool                   `yaml:"enabled,omitempty" example:"true"`
 	APIKey                    string                 `yaml:"api_key,omitempty" example:""`
+	APIVendor                 string                 `yaml:"api_vendor" example:"ollama"`
 	Headers                   map[string]string      `yaml:"headers,omitempty" example:"{'Content-Type':'application/json'}"`
 	AdditionalSystemPrompt    string                 `yaml:"additional_system_prompt,omitempty" example:""`
 	AdditionalUserPrompt      string                 `yaml:"additional_user_prompt,omitempty" example:""`

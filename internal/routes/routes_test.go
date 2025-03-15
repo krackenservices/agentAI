@@ -10,6 +10,8 @@ import (
 	"krackenservices.com/agentAI/internal/toolmodel"
 )
 
+var apiv1 = "/api/v1"
+
 // boolPtr is a helper to return a pointer to a bool.
 func boolPtr(b bool) *bool {
 	return &b
@@ -54,26 +56,26 @@ func TestRouter_ToolEndpoints(t *testing.T) {
 	router := routes.NewRouter(cfg)
 
 	// Check that the /hello endpoint is registered.
-	reqHello := httptest.NewRequest(http.MethodGet, "/hello", nil)
+	reqHello := httptest.NewRequest(http.MethodGet, apiv1+"/hello", nil)
 	rrHello := httptest.NewRecorder()
 	router.ServeHTTP(rrHello, reqHello)
 	if rrHello.Code == http.StatusNotFound {
-		t.Errorf("expected /hello endpoint, got 404")
+		t.Errorf("expected %s/hello endpoint, got 404", apiv1)
 	}
 
 	// Check that the internal tool "fstool" is disabled, so /tool/fstool should not be registered.
-	reqFstool := httptest.NewRequest(http.MethodPost, "/tool/fstool", nil)
+	reqFstool := httptest.NewRequest(http.MethodPost, apiv1+"/tool/fstool", nil)
 	rrFstool := httptest.NewRecorder()
 	router.ServeHTTP(rrFstool, reqFstool)
 	if rrFstool.Code != http.StatusNotFound {
-		t.Errorf("expected /tool/fstool to be unregistered (disabled), got %d", rrFstool.Code)
+		t.Errorf("expected %s/tool/fstool to be unregistered (disabled), got %d", apiv1, rrFstool.Code)
 	}
 
 	// Check that the external tool "externaltool" is registered.
-	reqExternal := httptest.NewRequest(http.MethodPost, "/tool/externaltool", nil)
+	reqExternal := httptest.NewRequest(http.MethodPost, apiv1+"/tool/externaltool", nil)
 	rrExternal := httptest.NewRecorder()
 	router.ServeHTTP(rrExternal, reqExternal)
 	if rrExternal.Code == http.StatusNotFound {
-		t.Errorf("expected /tool/externaltool to be registered, got 404")
+		t.Errorf("expected %s/tool/externaltool to be registered, got 404", apiv1)
 	}
 }

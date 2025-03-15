@@ -32,6 +32,7 @@ models:
   - id: local
     name: mymodel
     endpoint: http://127.0.0.1:8080/
+    api_vendor: ollama
     tools_supported: true
     tool_tag_start: "<tool>"
     tool_tag_end: "</tool>"
@@ -99,6 +100,7 @@ models:
   - id: local
     name: mymodel
     endpoint: http://127.0.0.1:8080/
+    api_vendor: ollama
     tools_supported: true
 tools:
   - id: externaltool
@@ -131,6 +133,7 @@ models:
   - id: local
     name: mymodel
     endpoint: http://127.0.0.1:8080/
+    api_vendor: ollama
     tools_supported: true
 tools:
   - id: fstool
@@ -156,6 +159,7 @@ models:
   - id: local
     name: mymodel
     endpoint: http://127.0.0.1:8080/
+    api_vendor: ollama
     tools_supported: true
 tools:
   - id: fstool

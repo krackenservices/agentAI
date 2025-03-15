@@ -98,7 +98,7 @@ func callLLM(model *config.ModelConfig, payload ChatRequest, context string) (st
 
 	fmt.Println("Sending message:\n\n" + message)
 
-	body, err := json.Marshal(message)
+	_, err := json.Marshal(message)
 	if err != nil {
 		return "", fmt.Errorf("failed to marshal payload: %w", err)
 	}

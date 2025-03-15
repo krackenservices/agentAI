@@ -1,4 +1,3 @@
-// ollama.go
 package llm
 
 // Ollama is the concrete implementation of LLM for the Ollama service.
